@@ -29,7 +29,7 @@ const RestaurantList = () => {
   }
 
   return (
-    <>
+    <div className="restanrant-container">
       <h1>Restaurants</h1>
       <ul>
         {restanrants.map((restanrant) => {
@@ -42,15 +42,15 @@ const RestaurantList = () => {
                 <p className="restanrant-description">
                   {restanrant.description}
                 </p>
+                <Link className="reserve-now-button" to={linkto}>
+                  Reserve now &rarr;
+                </Link>
               </div>
-              <Link className="reserve-now-button" to={linkto}>
-                Reserve now &rarr;
-              </Link>
             </li>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 
