@@ -1,8 +1,8 @@
 // FIXME: Add a Mongoose model here
 const mongoose = require("mongoose");
-const { Scheam } = mongoose;
+const { Schema } = mongoose;
 
-const restanrantSchema = new Scheam({
+const restanrantSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   image: { type: String, required: true },
