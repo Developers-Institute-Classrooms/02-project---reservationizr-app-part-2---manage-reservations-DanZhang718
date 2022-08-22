@@ -1,15 +1,15 @@
 const request = require("supertest");
 const app = require("./app");
-const restanrantsForTest = require("./testData/restanrantsForTest.json");
+const restaurantsForTest = require("./testData/restaurantsForTest.json");
 
 // User Story #1 - View all restaurants
 describe("1 - View all restaurants", () => {
-  it("GET /restanrants should return a list of restanrants and 200 status", async () => {
+  it("GET /restaurants should return a list of restaurants and 200 status", async () => {
     const expectedStatus = 200;
-    const expectedBody = restanrantsForTest;
+    const expectedBody = restaurantsForTest;
 
     await request(app)
-      .get("/restanrants")
+      .get("/restaurants")
       .expect(expectedStatus)
       .expect((res) => {
         expect(res.body).toEqual(expectedBody);
@@ -18,26 +18,26 @@ describe("1 - View all restaurants", () => {
 });
 // ser Story #2 - View a single restaurant:happy and unhappy path
 describe("2 - View a single restaurant", () => {
-  it("GET /restanrants/:id should return a single restanrant", async () => {
+  it("GET /restaurants/:id should return a single restaurant", async () => {
     const expectedStatus = 200;
-    const expectedBody = restanrantsForTest[0];
+    const expectedBody = restaurantsForTest[0];
     await request(app)
-      .get("/restanrants/616005cae3c8e880c13dc0b9")
+      .get("/restaurants/616005cae3c8e880c13dc0b9")
       .expect(expectedStatus)
       .expect((res) => {
         expect(res.body).toEqual(expectedBody);
       });
   });
-  it("GET /restanrants/:id should return 404 when request is a not exist id", async () => {
+  it("GET /restaurants/:id should return 404 when request is a not exist id", async () => {
     const expectedStatus = 404;
     await request(app)
-      .get("/restanrants/616005cae3c8e880c13dc0b0")
+      .get("/restaurants/616005cae3c8e880c13dc0b0")
       .expect(expectedStatus);
   });
-  it("GET /restanrants/:id should return 400 when request is an invalid id", async () => {
+  it("GET /restaurants/:id should return 400 when request is an invalid id", async () => {
     const expectedStatus = 400;
     await request(app)
-      .get("/restanrants/616005cae3c8e880c13")
+      .get("/restaurants/616005cae3c8e880c13")
       .expect(expectedStatus);
   });
 });

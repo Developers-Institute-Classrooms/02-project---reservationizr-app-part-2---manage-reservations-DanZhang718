@@ -1,0 +1,21 @@
+.restanrant-infor-container {
+  margin: 2rem 10rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.restaurant-name {
+  font-size: 2.5rem;
+}
+@media only screen and (min-width: 49rem) {
+  li {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+
+  .restanrant-infor-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+}
