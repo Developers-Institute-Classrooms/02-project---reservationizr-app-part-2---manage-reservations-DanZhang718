@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const { celebrate, errors, Segments } = require("celebrate");
 const RestaurantModel = require("./models/RestaurantModel");
 const ReservationModel = require("./models/ReservationModel");
-const formatRestaurant = require("./formatRestanrant");
+const formatRestaurant = require("./formatRestaurant");
 const formatRservation = require("./formatReservation");
 const reservationSchema = require("./models/reservationSchema");
 
