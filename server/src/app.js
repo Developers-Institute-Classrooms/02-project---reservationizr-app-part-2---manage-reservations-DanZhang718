@@ -33,12 +33,12 @@ app.get("/restaurants/:id", async (req, res) => {
 // User Story #3 - Book a reservation
 app.post("/reservations", async (req, res, next) => {
   try {
-    const { body, auth } = req;
-    const reservationBody = {
-      userId: auth.payload.sub,
-      ...body,
-    };
-    const reservation = new ReservationModel(reservationBody);
+    const { body } = req;
+    // const reservationBody = {
+    //   userId: auth.payload.sub,
+    //   ...body,
+    // };
+    const reservation = new ReservationModel(body);
     await reservation.save();
     return res.status(201).send(formatRservation(reservation));
   } catch (error) {

@@ -42,6 +42,43 @@ describe("2 - View a single restaurant", () => {
   });
 });
 // User Story #3 - Book a reservation
+describe("3 - Book a reservation", () => {
+  it("POST /reservatons creates a new reservation", async () => {
+    const expectedStatus = 201;
+    const body = {
+      partySize: 4,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+    };
+
+    await request(app)
+      .post("/reservations")
+      .send(body)
+      .expect(expectedStatus)
+      .expect((response) => {
+        expect(response.body).toEqual(expect.objectContaining(body));
+        expect(response.body.id).toBeTruthy();
+      });
+  });
+  it("POST /reservatons returns a 400 when a negative partySize is used", async () => {
+    const expectedStatus = 400;
+    const body = {
+      partySize: -2,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+    };
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+  it("POST /reservatons returns a 400 when a past date used", async () => {
+    const expectedStatus = 400;
+    const body = {
+      partySize: 4,
+      date: "2021-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+    };
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+});
 
 // User Story #4 - View all my reservations
 
