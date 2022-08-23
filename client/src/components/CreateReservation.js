@@ -7,29 +7,25 @@ import "./CreateReservation.css";
 import { Link } from "react-router-dom";
 
 const CreateReservation = ({ restaurantName }) => {
-  const [partySize, setPartySize] = useState("");
+  const [partySize, setPartySize] = useState();
   const [date, setDate] = useState("");
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const accessToken = await getAccessTokenSilently();
+    // const accessToken = await getAccessTokenSilently();
 
     setIsLoading(true);
-
-    const reservation = {
-      partySize: Number(partySize),
-      date,
-    };
+    const reservation = { partySize: Number(partySize), date, restaurantName };
     const response = await fetch("http://localhost:5001/reservations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(reservation),
     });
@@ -39,7 +35,7 @@ const CreateReservation = ({ restaurantName }) => {
       setErrorStatus(response.status);
     } else {
       setIsLoading(false);
-      navigate("/");
+      navigate("/reservations");
     }
   };
 
@@ -47,7 +43,7 @@ const CreateReservation = ({ restaurantName }) => {
     return (
       <>
         <p className="no-reservation">
-          Error creating a reservation (error status {errorStatus})
+          Error creating a reservation (error status {errorStatus} error )
         </p>
         <Link to="/" className="button">
           Return to restaurants
@@ -58,35 +54,36 @@ const CreateReservation = ({ restaurantName }) => {
 
   return (
     <>
-      <h2>Reserve Curry Place</h2>
-      <form onSubmit={handleSubmit}>
-        <p>
+      <div className="reservation-container">
+        <h2>Reserve Curry Place</h2>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="guest-number">Number of guests</label>
           <input
             type="number"
             id="guest-number"
-            className="form-imput"
+            className="form-input-item"
             value={partySize}
-            onchange={(event) => {
+            onChange={(event) => {
               setPartySize(event.target.value);
             }}
             required
           />
-        </p>
-        <p>
           <label htmlFor="date">Date</label>
           <DatePicker
             type="date"
             id="date"
-            className="form-imput"
+            className="form-input-item"
             selected={date}
-            onchange={(event) => {
-              setDate(event.target.value);
-            }}
+            onChange={(date) => setDate(date)}
+            showTimeSelect
+            dateFormat="Pp"
             required
           />
-        </p>
-      </form>
+          <button type="submit" className="submit-btn">
+            Submit
+          </button>
+        </form>
+      </div>
     </>
   );
 };
