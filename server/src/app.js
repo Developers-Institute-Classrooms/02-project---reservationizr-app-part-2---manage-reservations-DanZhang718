@@ -8,10 +8,15 @@ const ReservationModel = require("./models/ReservationModel");
 const formatRestaurant = require("./formatRestaurant");
 const formatRservation = require("./formatReservation");
 const reservationSchema = require("./models/reservationSchema");
+const { auth } = require("express-oauth2-jwt-bearer");
 
 app.use(cors());
 app.use(express.json());
-app.use(celebrate({ [Segments.BODY]: reservationSchema }));
+
+const checkJwt = auth({
+  audience: "https://reservationizr.com",
+  issuerBaseURL: `https://dev-o3716vt8.us.auth0.com/`,
+});
 
 // User Story #1 - View all restaurants
 app.get("/restaurants", async (req, res) => {
@@ -31,21 +36,26 @@ app.get("/restaurants/:id", async (req, res) => {
   return res.status(200).send(formatRestaurant(oneRestaurant));
 });
 // User Story #3 - Book a reservation
-app.post("/reservations", async (req, res, next) => {
-  try {
-    const { body } = req;
-    // const reservationBody = {
-    //   userId: auth.payload.sub,
-    //   ...body,
-    // };
-    const reservation = new ReservationModel(body);
-    await reservation.save();
-    return res.status(201).send(formatRservation(reservation));
-  } catch (error) {
-    error.status = 400;
-    next(error);
+app.post(
+  "/reservations",
+  checkJwt,
+  celebrate({ [Segments.BODY]: reservationSchema }),
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      // const reservationBody = {
+      //   userId: auth.payload.sub,
+      //   ...body,
+      // };
+      const reservation = new ReservationModel(body);
+      await reservation.save();
+      return res.status(201).send(formatRservation(reservation));
+    } catch (error) {
+      error.status = 400;
+      next(error);
+    }
   }
-});
+);
 
 // User Story #4 - View all my reservations
 
