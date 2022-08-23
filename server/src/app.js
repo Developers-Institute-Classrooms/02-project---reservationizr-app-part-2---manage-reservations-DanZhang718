@@ -1,22 +1,22 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
 const mongoose = require("mongoose");
 const { celebrate, errors, Segments } = require("celebrate");
+const { auth } = require("express-oauth2-jwt-bearer");
 const RestaurantModel = require("./models/RestaurantModel");
 const ReservationModel = require("./models/ReservationModel");
 const formatRestaurant = require("./formatRestaurant");
 const formatRservation = require("./formatReservation");
 const reservationSchema = require("./models/reservationSchema");
-const { auth } = require("express-oauth2-jwt-bearer");
 
-app.use(cors());
-app.use(express.json());
-
+const app = express();
 const checkJwt = auth({
   audience: "https://reservationizr.com",
   issuerBaseURL: `https://dev-o3716vt8.us.auth0.com/`,
 });
+
+app.use(cors());
+app.use(express.json());
 
 // User Story #1 - View all restaurants
 app.get("/restaurants", async (req, res) => {

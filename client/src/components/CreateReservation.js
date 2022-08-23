@@ -13,19 +13,19 @@ const CreateReservation = ({ restaurantName }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
-  // const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const accessToken = await getAccessTokenSilently();
+    const accessToken = await getAccessTokenSilently();
 
     setIsLoading(true);
-    const reservation = { partySize: Number(partySize), date, restaurantName };
+    const reservation = { partySize, date, restaurantName };
     const response = await fetch("http://localhost:5001/reservations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(reservation),
     });
