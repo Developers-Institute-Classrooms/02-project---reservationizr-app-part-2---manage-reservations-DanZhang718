@@ -42,12 +42,12 @@ app.post(
   celebrate({ [Segments.BODY]: reservationSchema }),
   async (req, res, next) => {
     try {
-      const { body } = req;
-      // const reservationBody = {
-      //   userId: auth.payload.sub,
-      //   ...body,
-      // };
-      const reservation = new ReservationModel(body);
+      const { body, auth } = req;
+      const reservationBody = {
+        userId: auth.payload.sub,
+        ...body,
+      };
+      const reservation = new ReservationModel(reservationBody);
       await reservation.save();
       return res.status(201).send(formatRservation(reservation));
     } catch (error) {
