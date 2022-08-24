@@ -89,10 +89,33 @@ describe("4 - View all my reservations", () => {
     await request(app)
       .get("/reservations")
       .expect(expectedStatus)
-
       .expect((res) => {
         expect(res.body).toEqual(expectedBody);
       });
   });
 });
 // User Story #5 - View a single reservation
+describe("5 - View a single reservation", () => {
+  it("GET /reservations/:id should return a single reservation", async () => {
+    const expectedStatus = 200;
+    const expectedBody = reservationsForTest[1];
+    await request(app)
+      .get("/reservations/614abf0a93e8e80ace792ac6")
+      .expect(expectedStatus)
+      .expect((res) => {
+        expect(res.body).toEqual(expectedBody);
+      });
+  });
+  it("GET /reservations/:id should return 404 when the reservation is not created by loggedin customer", async () => {
+    const expectedStatus = 404;
+    await request(app)
+      .get("/reservations/61679189b54f48aa6599a7fd")
+      .expect(expectedStatus);
+  });
+  it("GET /reservations/:id should return 400 when request is an invalid id", async () => {
+    const expectedStatus = 400;
+    await request(app)
+      .get("/reservations/616005cae3c8e880c13")
+      .expect(expectedStatus);
+  });
+});
