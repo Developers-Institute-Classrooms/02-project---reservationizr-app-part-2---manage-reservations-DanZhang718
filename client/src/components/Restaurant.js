@@ -8,13 +8,13 @@ const Restaurant = () => {
   const [restaurant, setRestaurant] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isNotFound, setIsNotFound] = useState(false);
-  console.log(id);
   useEffect(() => {
+    // FIXME: Make a fetch request and call setRestaurant with the response body
     const fetchData = async () => {
       const fetchUrl = `http://localhost:5001/restaurants/${id}`;
       const response = await fetch(fetchUrl);
       const restaurant = await response.json();
-      // FIXME: Make a fetch request and call setRestaurant with the response body
+
       if (!response.ok) {
         setIsNotFound(true);
         return;

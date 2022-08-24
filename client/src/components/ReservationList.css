@@ -3,6 +3,7 @@
   margin: 3rem 3rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-bottom: dashed;
+  border-color: lightgray;
 }
 p.restaurant-name {
   font-size: 1rem;

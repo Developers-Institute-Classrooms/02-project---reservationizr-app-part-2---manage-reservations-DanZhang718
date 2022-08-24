@@ -21,8 +21,6 @@ const ReservationList = () => {
       });
 
       const data = await response.json();
-      console.log(data);
-      console.log(response);
       setReservations(data);
       setIsLoading(false);
     };
@@ -32,7 +30,6 @@ const ReservationList = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
   if (reservations.length < 1) {
     return (
       <>
@@ -43,13 +40,12 @@ const ReservationList = () => {
       </>
     );
   }
-
   return (
     <>
       <h1>Upcoming reservations</h1>
       <ul>
         {reservations.map((reservation) => {
-          const linkto = `/reservation/${reservation.id}`;
+          const linkto = `/reservations/${reservation.id}`;
           return (
             <li className="reservations" key={reservation.id}>
               <p className="restaurant-name">{reservation.restaurantName}</p>
