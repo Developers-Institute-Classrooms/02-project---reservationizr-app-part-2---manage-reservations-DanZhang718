@@ -20,6 +20,13 @@ p.date {
 .details {
   color: red;
 }
+p.no-properties {
+  font-size: 1.2rem;
+  text-align: left;
+}
+.back-restaurants {
+  color: red;
+}
 @media only screen and (min-width: 49rem) {
   li.reservations {
     list-style-type: none;

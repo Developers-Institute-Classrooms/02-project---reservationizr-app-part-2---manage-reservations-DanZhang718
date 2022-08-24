@@ -36,7 +36,10 @@ const ReservationList = () => {
   if (reservations.length < 1) {
     return (
       <>
-        <p className="no-properties">No reservations found</p>
+        <p className="no-properties">You don't have any reservations.</p>
+        <Link className="back-restaurants" to="/">
+          View the restaurants
+        </Link>
       </>
     );
   }
