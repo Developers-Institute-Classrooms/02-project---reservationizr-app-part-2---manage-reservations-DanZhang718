@@ -1,9 +1,9 @@
-const formatRestanrant = (restanrant) => {
+const formatRestaurant = (restaurant) => {
   return {
-    id: restanrant._id,
-    name: restanrant.name,
-    description: restanrant.description,
-    image: restanrant.image,
+    id: restaurant._id,
+    name: restaurant.name,
+    description: restaurant.description,
+    image: restaurant.image,
   };
 };
-module.exports = formatRestanrant;
+module.exports = formatRestaurant;

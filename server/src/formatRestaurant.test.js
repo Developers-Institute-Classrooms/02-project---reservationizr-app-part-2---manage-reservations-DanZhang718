@@ -10,7 +10,7 @@ describe("formatRestaurant", () => {
     };
     const received = formatRestaurant({
       _id: "616bd284bae351bc447ace5b",
-      __v: "this-should-be-removed",
+      __v: 0,
       ...validRestaurant,
     });
     const expected = {

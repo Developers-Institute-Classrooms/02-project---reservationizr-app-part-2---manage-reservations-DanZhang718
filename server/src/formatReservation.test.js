@@ -10,7 +10,7 @@ describe("formatReservation", () => {
     };
     const received = formatReservation({
       _id: "61679189b54f48aa6599a7fd",
-      __v: "this-should-be-removed",
+      __v: 0,
       ...validReservation,
     });
     const expected = {

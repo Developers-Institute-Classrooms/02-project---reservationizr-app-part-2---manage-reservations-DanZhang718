@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("./app");
 const restaurantsForTest = require("./testData/restaurantsForTest.json");
-
+const reservationsForTest = require("./testData/reservationsForTest.json");
 // User Story #1 - View all restaurants
 describe("1 - View all restaurants", () => {
   it("GET /restaurants should return a list of restaurants and 200 status", async () => {
@@ -81,5 +81,18 @@ describe("3 - Book a reservation", () => {
 });
 
 // User Story #4 - View all my reservations
+describe("4 - View all my reservations", () => {
+  it("GET /reservations should return a list of reservations and 200 status", async () => {
+    const expectedStatus = 200;
+    const expectedBody = reservationsForTest;
 
+    await request(app)
+      .get("/reservations")
+      .expect(expectedStatus)
+
+      .expect((res) => {
+        expect(res.body).toEqual(expectedBody);
+      });
+  });
+});
 // User Story #5 - View a single reservation

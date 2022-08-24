@@ -6,7 +6,7 @@ const { auth } = require("express-oauth2-jwt-bearer");
 const RestaurantModel = require("./models/RestaurantModel");
 const ReservationModel = require("./models/ReservationModel");
 const formatRestaurant = require("./formatRestaurant");
-const formatRservation = require("./formatReservation");
+const formatReservation = require("./formatReservation");
 const reservationSchema = require("./models/reservationSchema");
 
 const app = express();
@@ -23,6 +23,7 @@ app.get("/restaurants", async (req, res) => {
   const restaurants = await RestaurantModel.find({});
   return res.status(200).send(restaurants.map(formatRestaurant));
 });
+
 // ser Story #2 - View a single restaurant
 app.get("/restaurants/:id", async (req, res) => {
   const { id } = req.params;
@@ -35,6 +36,7 @@ app.get("/restaurants/:id", async (req, res) => {
   }
   return res.status(200).send(formatRestaurant(oneRestaurant));
 });
+
 // User Story #3 - Book a reservation
 app.post(
   "/reservations",
@@ -47,9 +49,9 @@ app.post(
         userId: auth.payload.sub,
         ...body,
       };
-      const reservation = new ReservationModel(reservationBody);
-      await reservation.save();
-      return res.status(201).send(formatRservation(reservation));
+      const addreservation = new ReservationModel(reservationBody);
+      await addreservation.save();
+      return res.status(201).send(formatReservation(addreservation));
     } catch (error) {
       error.status = 400;
       next(error);
@@ -58,6 +60,17 @@ app.post(
 );
 
 // User Story #4 - View all my reservations
+app.get("/reservations", checkJwt, async (req, res) => {
+  const { auth } = req;
+  const reservations = await ReservationModel.find({
+    userId: auth.payload.sub,
+  });
+  console.log(reservations);
+  if (reservations === null) {
+    return res.status(404).send({ error: "not found" });
+  }
+  return res.status(200).send(reservations.map(formatReservation));
+});
 
 // User Story #5 - View a single reservation
 
