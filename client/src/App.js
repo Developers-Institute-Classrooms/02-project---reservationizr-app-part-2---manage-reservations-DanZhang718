@@ -22,8 +22,10 @@ const App = () => {
           <Route path="/restaurants/:id" element={<ProtectedRoute />}>
             <Route path="/restaurants/:id" element={<Restaurant />} />
           </Route>
+          <Route path="/reservations" element={<ProtectedRoute />}>
+            <Route path="/reservations" element={<ReservationList />} />
+          </Route>
           <Route path="/reservations/:id" element={<Reservation />} />
-          <Route path="/reservations" element={<ReservationList />} />
           <Route path="/" element={<RestaurantList />} />
         </Routes>
       </div>
