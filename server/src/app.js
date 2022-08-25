@@ -73,19 +73,24 @@ app.get("/reservations", checkJwt, async (req, res) => {
 });
 
 // User Story #5 - View a single reservation
-app.get("/reservations/:id", checkJwt, async (req, res) => {
-  const { auth } = req;
-  console.log(auth);
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({ error: "id is unavild" });
+app.get("/reservations/:id", checkJwt, async (req, res, next) => {
+  try {
+    const { auth } = req;
+    console.log(auth);
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send({ error: "id is unavild" });
+    }
+    const oneReservation = await ReservationModel.findById(id);
+    console.log(oneReservation);
+    if (oneReservation === null || oneReservation.userId !== auth.payload.sub) {
+      return res.status(404).send({ error: "not found" });
+    }
+    return res.status(200).send(formatReservation(oneReservation));
+  } catch (error) {
+    error.status = 400;
+    next(error);
   }
-  const oneReservation = await ReservationModel.findById(id);
-  console.log(oneReservation);
-  if (oneReservation === null || oneReservation.userId !== auth.payload.sub) {
-    return res.status(404).send({ error: "not found" });
-  }
-  return res.status(200).send(formatReservation(oneReservation));
 });
 app.use(errors());
 module.exports = app;
