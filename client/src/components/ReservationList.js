@@ -25,7 +25,7 @@ const ReservationList = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [getAccessTokenSilently]);
 
   if (isLoading) {
     return <p>Loading...</p>;

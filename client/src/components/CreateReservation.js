@@ -10,7 +10,6 @@ const CreateReservation = ({ restaurantName }) => {
   const [partySize, setPartySize] = useState();
   const [date, setDate] = useState("");
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
   const { getAccessTokenSilently } = useAuth0();
@@ -18,8 +17,6 @@ const CreateReservation = ({ restaurantName }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const accessToken = await getAccessTokenSilently();
-
-    setIsLoading(true);
     const reservation = { partySize, date, restaurantName };
     const response = await fetch("http://localhost:5001/reservations", {
       method: "POST",
@@ -34,7 +31,6 @@ const CreateReservation = ({ restaurantName }) => {
       setIsError(true);
       setErrorStatus(response.status);
     } else {
-      setIsLoading(false);
       navigate("/reservations");
     }
   };

@@ -32,7 +32,7 @@ const Reservation = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [id]);
+  }, [id, getAccessTokenSilently]);
 
   if (isNotFound) {
     return (
