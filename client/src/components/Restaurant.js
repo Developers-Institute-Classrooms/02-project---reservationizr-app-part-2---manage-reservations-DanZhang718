@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CreateReservation from "./CreateReservation";
 import "./Restaurant.css";
+import { Link } from "react-router-dom";
 
 const Restaurant = () => {
   const { id } = useParams();
@@ -28,7 +29,12 @@ const Restaurant = () => {
   if (isNotFound) {
     return (
       <>
-        <p className="error">Sorry! We can't find that restanrant.</p>
+        <div>
+          <p className="error">Sorry! We can't find that restanrant.</p>
+          <Link to="/" className="error-button">
+            &larr; Back to restaurants
+          </Link>
+        </div>
       </>
     );
   }

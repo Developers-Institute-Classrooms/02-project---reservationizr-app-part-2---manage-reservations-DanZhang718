@@ -7,7 +7,7 @@ import "./CreateReservation.css";
 import { Link } from "react-router-dom";
 
 const CreateReservation = ({ restaurantName }) => {
-  const [partySize, setPartySize] = useState();
+  const [partySize, setPartySize] = useState("");
   const [date, setDate] = useState("");
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
@@ -60,8 +60,8 @@ const CreateReservation = ({ restaurantName }) => {
             type="number"
             id="guest-number"
             className="form-input-item"
-            value={partySize}
             autoComplete="off"
+            value={partySize}
             onChange={(event) => {
               setPartySize(event.target.value);
             }}
