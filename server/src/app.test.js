@@ -106,10 +106,10 @@ describe("5 - View a single reservation", () => {
         expect(res.body).toEqual(expectedBody);
       });
   });
-  it("GET /reservations/:id should return 404 when the reservation is not created by loggedin customer", async () => {
+  it("GET /reservations/:id should return 404 when the reservation is not belong to loggedin customer", async () => {
     const expectedStatus = 404;
     await request(app)
-      .get("/reservations/61679189b54f48aa6599a7fd")
+      .get("/reservations/63055b897500ed3a99b38c34")
       .expect(expectedStatus);
   });
   it("GET /reservations/:id should return 400 when request is an invalid id", async () => {
