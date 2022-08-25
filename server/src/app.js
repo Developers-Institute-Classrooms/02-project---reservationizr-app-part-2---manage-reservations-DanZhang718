@@ -83,8 +83,11 @@ app.get("/reservations/:id", checkJwt, async (req, res, next) => {
     }
     const oneReservation = await ReservationModel.findById(id);
     console.log(oneReservation);
-    if (oneReservation === null || oneReservation.userId !== auth.payload.sub) {
+    if (oneReservation === null) {
       return res.status(404).send({ error: "not found" });
+    }
+    if (oneReservation.userId !== auth.payload.sub) {
+      return res.status(403).send({ error: "not belong to this user" });
     }
     return res.status(200).send(formatReservation(oneReservation));
   } catch (error) {
