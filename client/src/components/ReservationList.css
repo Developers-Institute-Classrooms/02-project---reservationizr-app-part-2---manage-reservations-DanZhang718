@@ -6,7 +6,7 @@
   border-color: lightgray;
 }
 p.restaurant-name {
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-align: left;
   font-weight: bold;
   margin: 0;
@@ -27,8 +27,9 @@ p.no-properties {
 }
 .back-restaurants {
   color: red;
+  font-size: 1.2rem;
 }
-@media only screen and (min-width: 49rem) {
+@media only screen and (min-width: 40rem) {
   li.reservations {
     list-style-type: none;
     display: grid;

@@ -1,13 +1,13 @@
 .restaurant {
   padding: 2rem;
-  margin: 3rem 3rem;
+  margin: 1rem 0;
   box-shadow: 0px 0px 20px 0px lightgray;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .reserve-now-button {
   background-color: #eb212e;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: none;
   border-radius: 0.5rem;
   padding: 1rem 1rem;
@@ -17,20 +17,29 @@ li {
   list-style-type: none;
 }
 .restaurant-text-container {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+h2.restaurant-name {
+  font-size: 1.5rem;
 }
 .restaurant-description {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
-@media only screen and (min-width: 49rem) {
+@media only screen and (min-width: 40rem) {
   li {
     list-style-type: none;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 
-  .restaurant-container {
-    width: 100%;
+  h2.restaurant-name {
+    font-size: 2rem;
+  }
+  .reserve-now-button {
+    font-size: 1.5rem;
+  }
+  .restaurant {
+    margin: 2rem 5rem;
   }
 }

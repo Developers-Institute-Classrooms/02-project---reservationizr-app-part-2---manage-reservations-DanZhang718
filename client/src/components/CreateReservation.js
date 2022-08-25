@@ -42,19 +42,21 @@ const CreateReservation = ({ restaurantName }) => {
   if (isError) {
     return (
       <>
-        <p className="no-reservation">
-          Error creating a reservation (error status {errorStatus} error )
-        </p>
-        <Link to="/" className="button">
-          Return to restaurants
-        </Link>
+        <div className="error-message">
+          <p className="no-reservation">
+            Error creating a reservation (error status {errorStatus} error )
+          </p>
+          <Link to="/" className="error-button">
+            Return to restaurants
+          </Link>
+        </div>
       </>
     );
   }
 
   return (
     <>
-      <div className="reservation-container">
+      <div className="reservation-create-container">
         <h2>Reserve Curry Place</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="guest-number">Number of guests</label>
@@ -63,6 +65,7 @@ const CreateReservation = ({ restaurantName }) => {
             id="guest-number"
             className="form-input-item"
             value={partySize}
+            autoComplete="off"
             onChange={(event) => {
               setPartySize(event.target.value);
             }}
@@ -74,6 +77,7 @@ const CreateReservation = ({ restaurantName }) => {
             id="date"
             className="form-input-item"
             selected={date}
+            autoComplete="off"
             onChange={(date) => setDate(date)}
             showTimeSelect
             dateFormat="Pp"

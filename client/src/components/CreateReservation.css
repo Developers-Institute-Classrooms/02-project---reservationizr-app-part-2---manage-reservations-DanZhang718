@@ -8,10 +8,11 @@ label {
   height: 2rem;
   margin: 1rem 0;
 }
-.reservation-container {
-  margin: 2rem 10rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.reservation-create-container,
+.error-message {
+  margin: 2rem 2rem;
 }
+
 .submit-btn {
   background-color: #eb212e;
   color: white;
@@ -20,4 +21,13 @@ label {
   border-radius: 0.5rem;
   padding: 0.8rem 2rem;
   margin-top: 1rem;
+}
+.error-button {
+  color: red;
+}
+@media only screen and (min-width: 40rem) {
+  .reservation-create-container,
+  .error-message {
+    margin: 0 10rem;
+  }
 }

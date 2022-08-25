@@ -50,16 +50,14 @@ const Reservation = () => {
     return <p>Loading...</p>;
   }
   return (
-    <>
-      <div className="reservation-container">
-        <p className="name">{reservation.restaurantName}</p>
-        <p className="date">{formatDate(reservation.date)}</p>
-        <p className="party-size">Party Size : {reservation.partySize}</p>
-        <Link className="back-reservations" to="/reservations">
-          &larr; Back to reservations
-        </Link>
-      </div>
-    </>
+    <div className="reservation-container">
+      <p className="name">{reservation.restaurantName}</p>
+      <p className="date">{formatDate(reservation.date)}</p>
+      <p className="party-size">Party Size : {reservation.partySize}</p>
+      <Link className="back-reservations" to="/reservations">
+        &larr; Back to reservations
+      </Link>
+    </div>
   );
 };
 

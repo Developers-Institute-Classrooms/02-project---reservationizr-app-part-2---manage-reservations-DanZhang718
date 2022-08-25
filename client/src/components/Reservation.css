@@ -1,5 +1,5 @@
 .reservation-container {
-  margin: 2rem 10rem;
+  margin: 2rem 5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .error-message {
@@ -7,26 +7,29 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .date {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: black;
 }
 .back-reservations {
   background-color: lightgray;
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
-  margin-top: 5rem;
   color: black;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  display: block;
+  text-align: center;
+  width: 18rem;
+  margin-top: 3rem;
 }
 .party-size {
   border-bottom: dashed;
   border-color: lightgray;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding-bottom: 3rem;
 }
@@ -37,17 +40,11 @@
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-@media only screen and (min-width: 49rem) {
-  li {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
+@media only screen and (min-width: 40rem) {
+  .reservation-container {
+    margin: 0 10rem;
   }
-
-  .restanrant-infor-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
+  .back-reservations {
+    font-size: 1.5rem;
   }
 }
