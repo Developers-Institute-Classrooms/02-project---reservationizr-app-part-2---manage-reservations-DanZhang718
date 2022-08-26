@@ -30,7 +30,7 @@ const Restaurant = () => {
     return (
       <>
         <div>
-          <p className="error">Sorry! We can't find that restanrant.</p>
+          <p className="error">Sorry! We can't find that restaurant.</p>
           <Link to="/" className="error-button">
             &larr; Back to restaurants
           </Link>
@@ -44,7 +44,7 @@ const Restaurant = () => {
 
   return (
     <>
-      <div className="restanrant-infor-container">
+      <div className="restaurant-infor-container">
         <img src={restaurant.image} alt={restaurant.name} />
         <div className="restaurant-text-container">
           <h2 className="restaurant-name">{restaurant.name}</h2>

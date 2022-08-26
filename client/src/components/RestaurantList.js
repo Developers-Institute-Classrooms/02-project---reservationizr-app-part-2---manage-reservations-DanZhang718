@@ -31,7 +31,7 @@ const RestaurantList = () => {
   }
 
   return (
-    <div className="restanrant-list-container">
+    <div className="restaurant-list-container">
       <h1>Restaurants</h1>
       <ul>
         {restaurant.map((restaurant) => {
