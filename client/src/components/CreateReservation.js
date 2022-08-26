@@ -18,14 +18,17 @@ const CreateReservation = ({ restaurantName }) => {
     event.preventDefault();
     const accessToken = await getAccessTokenSilently();
     const reservation = { partySize, date, restaurantName };
-    const response = await fetch("http://localhost:5001/reservations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(reservation),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/reservations`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(reservation),
+      }
+    );
 
     if (!response.ok) {
       setIsError(true);
